@@ -109,6 +109,23 @@ document.addEventListener("DOMContentLoaded", function () {
   }, { root: null, threshold: 0.15, rootMargin: "0px 0px -10px 0px" });
   projectCards.forEach((card) => observer.observe(card));
 
+  // Skills Section Animation
+  const skillsList = document.querySelector(".skills__list");
+  if (skillsList) {
+    const skillsObserver = new IntersectionObserver(
+      (entries, observer) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("show");
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { root: null, threshold: 0.2 } // Adjust threshold if needed
+    );
+    skillsObserver.observe(skillsList);
+  }
+
   // Typewriter Animation
   const roles = ["AI Engineer 🧠", "Gen AI Developer ✨", "Machine Learning Engineer 🚀"];
   let roleIndex = 0, charIndex = 0, isDeleting = false;
@@ -118,10 +135,10 @@ document.addEventListener("DOMContentLoaded", function () {
     const typingText = document.getElementById("typing-text");
     if (!typingText) return;
     if (!isDeleting && charIndex <= roles[roleIndex].length) {
-      typingText.innerHTML = roles[roleIndex].substring(0, charIndex++);
+      typingText.innerHTML = roles[roleIndex].substring(0, charIndex=charIndex+2);
       setTimeout(typeText, typingSpeed);
     } else if (isDeleting && charIndex >= 0) {
-      typingText.innerHTML = roles[roleIndex].substring(0, charIndex--);
+      typingText.innerHTML = roles[roleIndex].substring(0, charIndex=charIndex-2);
       setTimeout(typeText, erasingSpeed);
     } else {
       isDeleting = !isDeleting;
@@ -139,4 +156,17 @@ document.addEventListener("DOMContentLoaded", function () {
     } else {
       console.error("Element #experience-text not found!");
     }
+
+  // Set dynamic copyright year
+  const copyrightYear = new Date().getFullYear();
+  document.getElementById("copyright").textContent = `Copyrights Reserved © ${copyrightYear}`;
+});
+
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener("click", function(e) {
+      e.preventDefault();
+      document.querySelector(this.getAttribute("href")).scrollIntoView({
+          behavior: "smooth"
+      });
+  });
 });
