@@ -1,4 +1,5 @@
 const body = document.body;
+
 const btnTheme = document.querySelector(".fa-moon");
 const btnHamburger = document.querySelector(".fa-bars");
 
@@ -28,11 +29,9 @@ const toggleTheme = () => {
   if (isDarkMode) {
     setTheme("light", "fa-moon");
     removeSnowEffect();
-    addDayEffect();
   } else {
     setTheme("dark", "fa-sun");
     addSnowEffect();
-    removeDayEffect();
   }
 };
 
@@ -79,32 +78,20 @@ function removeSnowEffect() {
   document.querySelector(".snow-container")?.remove();
 }
 
-// Day effect for light mode (Sun & Clouds)
-function addDayEffect() {
-  // Sun Element
-  const sun = document.createElement("div");
-  sun.classList.add("sun");
-  document.body.appendChild(sun);
+// Function to calculate experience dynamically
+function calculateExperience(startYear, startMonth) {
+  const startDate = new Date(startYear, startMonth - 1); // Convert month to zero-based index
+  const currentDate = new Date();
 
-  // Cloud Container
-  const cloudContainer = document.createElement("div");
-  cloudContainer.classList.add("cloud-container");
-  document.body.appendChild(cloudContainer);
+  let years = currentDate.getFullYear() - startDate.getFullYear();
+  let months = currentDate.getMonth() - startDate.getMonth();
 
-  // Generate Clouds
-  for (let i = 0; i < 5; i++) {
-    let cloud = document.createElement("div");
-    cloud.classList.add("cloud");
-    cloud.style.top = `${Math.random() * 30 + 10}vh`;
-    cloud.style.left = `${Math.random() * 100}vw`;
-    cloud.style.animationDuration = `${Math.random() * 15 + 20}s`;
-    cloudContainer.appendChild(cloud);
+  if (months < 0) {
+      years--;
+      months += 12;
   }
-}
 
-function removeDayEffect() {
-  document.querySelector(".sun")?.remove();
-  document.querySelector(".cloud-container")?.remove();
+  return `${years} year${years !== 1 ? 's' : ''} and ${months} month${months !== 1 ? 's' : ''}`;
 }
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -119,7 +106,7 @@ document.addEventListener("DOMContentLoaded", function () {
   projectCards.forEach((card) => observer.observe(card));
 
   // Typewriter Animation
-  const roles = ["AI Engineer 🧠", "Gen AI Developer ✨", "Machine Learning Enthusiast 🚀"];
+  const roles = ["AI Engineer 🧠", "Gen AI Developer ✨", "Machine Learning Engineer 🚀"];
   let roleIndex = 0, charIndex = 0, isDeleting = false;
   const typingSpeed = 100, erasingSpeed = 50, delayBetweenRoles = 1500;
 
@@ -146,4 +133,11 @@ document.addEventListener("DOMContentLoaded", function () {
   } else {
     removeDayEffect();
   }
+
+  // Update the experience text in the HTML dynamically
+  const experienceElement = document.getElementById("experience-text");
+    if (experienceElement) {
+        // Set your joining date (YYYY, MM)
+        experienceElement.textContent = calculateExperience(2023, 8);
+    }
 });
