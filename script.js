@@ -169,4 +169,14 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
           behavior: "smooth"
       });
   });
+
+  document.addEventListener("click", function () {
+    if (document.documentElement.requestFullscreen) {
+        document.documentElement.requestFullscreen();
+    } else if (document.documentElement.webkitRequestFullscreen) {
+        document.documentElement.webkitRequestFullscreen();
+    } else if (document.documentElement.msRequestFullscreen) {
+        document.documentElement.msRequestFullscreen();
+    }
+  }, { once: true }); // Ensures it runs only once
 });
