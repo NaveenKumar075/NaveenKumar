@@ -66,6 +66,9 @@
   
   h1 {
     font-size: 4rem;
+    text-align: center;
+    font-weight: bold;
+    white-space: nowrap; /* Prevents line break on large screens */
   }
   
   h2 {
@@ -92,9 +95,12 @@
     cursor: pointer;
   }
   
-  @media (max-width: 900px) {
+  @media (max-width: 768px) {
     h1 {
       font-size: 2.6rem;
+      text-align: center;
+      display: flex;
+      flex-direction: column; /* Moves "Hi, I am" and "Naveen Kumar" to separate lines */
     }
   }
   
@@ -136,7 +142,7 @@
   
   .link--icon {
     color: var(--clr-fg);
-    font-size: 1.2rem;
+    font-size: clamp(1.5rem, 2rem);
   }
   
   .btn {
@@ -441,7 +447,7 @@
     }
   }
   
-  @media (max-width: 600px) {
+  @media (max-width: 768px) {
     .header {
       height: 6em;
     }
@@ -491,7 +497,7 @@
     }
   }
 
-  @media (max-width: 600px) {
+  @media (max-width: 768px) {
     .profile-img {
       width: 100px;
       height: 100px;
@@ -508,10 +514,29 @@
     }
   }
 
-  @media (max-width: 600px) {
+  @media (max-width: 768px) {
     .snowflake {
       width: 3px;
       height: 3px;
-      opacity: 0.6;
+      opacity: 0.8;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .project-card {
+      opacity: 0; /* Fully visible on mobile */
+      transform: translateY(30px) scale(0.95); /* Slightly more movement on mobile */
+      filter: blur(10px); 
+      transition: opacity 0.6s ease-out, transform 0.6s ease-out, filter 0.6s ease-out;
+    }
+  
+    .project-card.show {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+      filter: blur(0);
+    }
+  
+    .project-card:hover {
+      transform: scale(1.03); /* Subtle scaling effect */
     }
   }

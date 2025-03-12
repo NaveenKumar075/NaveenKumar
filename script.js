@@ -95,14 +95,18 @@ function calculateExperience(startYear, startMonth) {
 }
 
 document.addEventListener("DOMContentLoaded", function () {
+  console.log("Script Loaded Successfully!");
+
+  // Project Cards Animation
   const projectCards = document.querySelectorAll(".project-card");
-  const observer = new IntersectionObserver((entries) => {
+  const observer = new IntersectionObserver((entries, observer) => {
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
-        entry.target.classList.add("show");
+        entry.target.classList.add("show"); // Apply animation
+        observer.unobserve(entry.target); // Stop observing once animated
       }
     });
-  }, { threshold: 0.3 });
+  }, { root: null, threshold: 0.15, rootMargin: "0px 0px -10px 0px" });
   projectCards.forEach((card) => observer.observe(card));
 
   // Typewriter Animation
@@ -127,17 +131,12 @@ document.addEventListener("DOMContentLoaded", function () {
   }
   setTimeout(typeText, 1000);
 
-  // Initialize correct theme on page load
-  if (body.classList.contains("light")) {
-    addDayEffect();
-  } else {
-    removeDayEffect();
-  }
-
   // Update the experience text in the HTML dynamically
   const experienceElement = document.getElementById("experience-text");
     if (experienceElement) {
-        // Set your joining date (YYYY, MM)
-        experienceElement.textContent = calculateExperience(2023, 8);
+      // Set your joining date (YYYY, MM)
+      experienceElement.textContent = calculateExperience(2023, 8);
+    } else {
+      console.error("Element #experience-text not found!");
     }
 });
