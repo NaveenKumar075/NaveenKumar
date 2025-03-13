@@ -296,6 +296,30 @@
   .about .btn--outline {
     margin-right: 1em;
   }
+
+  .timeline-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+  }
+
+  /* Duration */
+  .education__duration {
+    font-size: 15px;
+    color: var(--clr-fg-alt);
+    margin-top: 3px;
+    padding-top: 5px;
+  }
+
+  /* CGPA Alignment */
+  .cgpa {
+    text-align: left;
+    font-weight: bold;
+    margin-top: 10px;
+    padding-right: 20px;
+    font-size: 16px;
+  }
   
   .projects__grid {
     max-width: 1100px;
@@ -465,6 +489,13 @@
     font-size: 0.9rem;
     font-weight: 700;
     color: var(--clr-fg);
+  }
+
+  .programmer-png {
+    width: 27px;  /* Adjust size as needed */
+    height: auto;
+    vertical-align: middle;  /* Aligns with text */
+    margin-left: 3px;
   }
   
   .scroll-top {
