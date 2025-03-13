@@ -95,6 +95,7 @@ function calculateExperience(startYear, startMonth) {
 }
 
 document.addEventListener("DOMContentLoaded", function () {
+  // Script Check Log
   console.log("Script Loaded Successfully!");
 
   // Project Cards Animation
@@ -169,14 +170,14 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
           behavior: "smooth"
       });
   });
+});
 
-  document.addEventListener("click", function () {
-    if (document.documentElement.requestFullscreen) {
-        document.documentElement.requestFullscreen();
-    } else if (document.documentElement.webkitRequestFullscreen) {
-        document.documentElement.webkitRequestFullscreen();
-    } else if (document.documentElement.msRequestFullscreen) {
-        document.documentElement.msRequestFullscreen();
-    }
-  }, { once: true }); // Ensures it runs only once
+document.getElementById("fullscreenButton").addEventListener("click", function () {
+  if (!document.fullscreenElement) {
+      document.documentElement.requestFullscreen();
+      this.innerHTML = '<i class="fa-solid fa-down-left-and-up-right-to-center"></i>'; // Change to exit fullscreen icon
+  } else {
+      document.exitFullscreen();
+      this.innerHTML = '<i class="fa-solid fa-up-right-and-down-left-from-center"></i>'; // Change back to fullscreen icon
+  }
 });
