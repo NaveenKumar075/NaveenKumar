@@ -222,13 +222,11 @@
     color: var(--clr-primary);
     font-size: 0.7rem;
     transition: transform 0.2s ease-in-out;
-    border-radius: 50%;
-    border: none;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
   }
 
   .fullscreen-btn i {
     font-size: 1.2rem; /* Adjust icon size */
+    color: var(--clr-primary);
   }
 
   /* Hover and Focus Effects */
