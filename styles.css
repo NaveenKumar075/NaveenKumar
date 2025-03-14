@@ -243,14 +243,8 @@
   /* Mobile adjustments */
   @media (max-width: 768px) {
       .fullscreen-btn {
-        font-size: 0.9rem; /* Adjust size */
-        padding: 0 0.5rem;
-        margin-top: 47px;
-      }
-
-      .fullscreen-btn i {
-          font-size: 0.9rem; /* Reduce icon size */
-      }
+        display: none !important;
+    }
   }
   
   /*========
