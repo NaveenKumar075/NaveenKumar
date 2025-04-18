@@ -153,7 +153,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const experienceElement = document.getElementById("experience-text");
     if (experienceElement) {
       // Set your joining date (YYYY, MM)
-      experienceElement.textContent = calculateExperience(2023, 8);
+      experienceElement.textContent = calculateExperience(2023, 3);
     } else {
       console.error("Element #experience-text not found!");
     }
